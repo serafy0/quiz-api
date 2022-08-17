@@ -4,7 +4,6 @@ import express, { Express, Request, Response, NextFunction } from "express"
 import helmet from "helmet"
 import rateLimit, { RateLimitRequestHandler } from "express-rate-limit"
 import pino from "pino-http"
-import ApiError from "./middleware/errorHandling/ApiError"
 import errorHandler from "./middleware/errorHandling/errorHandler"
 
 const app: Express = express()
