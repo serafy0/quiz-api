@@ -5,7 +5,7 @@ import helmet from "helmet"
 import rateLimit, { RateLimitRequestHandler } from "express-rate-limit"
 import pino from "pino-http"
 import errorHandler from "./middleware/errorHandling/errorHandler"
-
+import setupDatabase from "./db/setup"
 const app: Express = express()
 const port = process.env.PORT || 3000
 
@@ -20,6 +20,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
 app.use(pino())
 app.use(helmet())
 app.use(limiter)
+setupDatabase()
 
 app.all("*", (req: Request, res: Response) => {
     res.status(404).json({ message: "Not Found" })
