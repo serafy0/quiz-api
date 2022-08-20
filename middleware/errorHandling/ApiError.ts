@@ -1,9 +1,3 @@
-// function apiError(status: number, message: string) {
-//     this.message = message
-//     this.status = status
-// }
-// apiError.prototype = new Error()
-
 class ApiError extends Error {
     message: string
     status: number
