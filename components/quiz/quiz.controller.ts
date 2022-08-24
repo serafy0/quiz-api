@@ -34,4 +34,26 @@ async function updateQuiz(req: Request, res: Response, next: NextFunction) {
     }
 }
 
-export { createQuiz, updateQuiz }
+async function getQuiz(req: Request, res: Response, next: NextFunction) {
+    try {
+        const valid = validateId(req.params)
+        const { id } = req.params
+        if (!valid) {
+            if (!req.params.id) {
+                throw new ApiError(400, "an id is required")
+            }
+            throw new ApiError(400, "id invalid")
+        }
+
+        const quiz = await getOneQuiz(id)
+        if (!quiz) {
+            throw new ApiError(404, "Not found")
+        }
+
+        return res.status(200).json({ quiz })
+    } catch (err) {
+        next(err)
+    }
+}
+
+export { createQuiz, updateQuiz, getQuiz }
