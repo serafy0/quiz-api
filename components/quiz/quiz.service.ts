@@ -11,3 +11,7 @@ export async function editQuiz(id: string, title: string, picture: string) {
 export async function getOneQuiz(id: string) {
     return await Quiz.query().findById(id)
 }
+
+export async function removeQuiz(id: string) {
+    return await Quiz.query().deleteById(id)
+}

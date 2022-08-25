@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express"
 import ApiError from "../../middleware/errorHandling/ApiError"
-import { addQuiz, editQuiz, getOneQuiz } from "./quiz.service"
+import { addQuiz, editQuiz, getOneQuiz, removeQuiz } from "./quiz.service"
 import { validateId } from "./quiz.validation"
 async function createQuiz(req: Request, res: Response, next: NextFunction) {
     try {
@@ -55,5 +55,26 @@ async function getQuiz(req: Request, res: Response, next: NextFunction) {
         next(err)
     }
 }
+async function deleteQuiz(req: Request, res: Response, next: NextFunction) {
+    try {
+        const valid = validateId(req.params)
+        const { id } = req.params
+        if (!valid) {
+            if (!req.params.id) {
+                throw new ApiError(400, "an id is required")
+            }
+            throw new ApiError(400, "id invalid")
+        }
 
-export { createQuiz, updateQuiz, getQuiz }
+        const quiz = await removeQuiz(id)
+        if (!quiz) {
+            throw new ApiError(404, "Not found")
+        }
+
+        return res.status(204)
+    } catch (err) {
+        next(err)
+    }
+}
+
+export { createQuiz, updateQuiz, getQuiz, deleteQuiz }
