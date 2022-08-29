@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { createQuiz, updateQuiz, getQuiz, deleteQuiz } from "./quiz.controller"
-const router = Router()
+const router = Router({ mergeParams: true })
 
 router.post("/", createQuiz)
 router.patch("/:id", updateQuiz)

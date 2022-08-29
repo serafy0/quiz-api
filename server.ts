@@ -6,6 +6,7 @@ import rateLimit, { RateLimitRequestHandler } from "express-rate-limit"
 import pino from "pino-http"
 import errorHandler from "./middleware/errorHandling/errorHandler"
 import quizRouter from "./components/quiz/quiz.routes"
+import questionRouter from "./components/question/question.routes"
 import setupDatabase from "./db/setup"
 const app: Express = express()
 const port = process.env.PORT || 3000
@@ -24,7 +25,9 @@ app.use(limiter)
 app.use(express.json())
 setupDatabase()
 
+quizRouter.use("/question", questionRouter)
 app.use("/quiz", quizRouter)
+
 app.all("*", (req: Request, res: Response) => {
     res.status(404).json({ message: "Not Found" })
 })
