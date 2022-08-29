@@ -26,8 +26,6 @@ class Quiz extends BaseModel {
             },
         }
     }
-
-    // This object defines the relations to other models.
 }
 
 export default Quiz
