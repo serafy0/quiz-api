@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
         table.integer("points").defaultTo(1)
         table.string("picture")
         table.text("text").notNullable()
-        table.text("explination")
+        table.text("explanation")
         table.text("hint")
         table.uuid("quiz_id").references("quizzes.id").onDelete("CASCADE")
     })
