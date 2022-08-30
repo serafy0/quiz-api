@@ -5,6 +5,7 @@ export async function up(knex: Knex): Promise<void> {
         table.increments("id").primary()
         table.integer("number").notNullable()
         table.enum("type", ["text", "picture"]).defaultTo("text")
+        table.string("text")
         table.string("picture")
         table.uuid("question_id").references("questions.id").onDelete("CASCADE")
     })
