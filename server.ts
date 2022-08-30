@@ -19,7 +19,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
     message: { message: "too many requests" },
 })
 
-app.use(pino())
+if (process.env.ENV === "production") app.use(pino())
 app.use(helmet())
 app.use(limiter)
 app.use(express.json())
