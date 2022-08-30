@@ -15,8 +15,8 @@ class Question extends BaseModel {
             required: ["text", "number"],
 
             properties: {
-                number: { type: "number", minLength: 1 },
-                points: { type: "number", minLength: 1 },
+                number: { type: "number", minimum: 1 },
+                points: { type: "number", minimum: 1 },
                 text: { type: "string" },
                 explanation: { type: "string" },
                 hint: { type: "string" },
