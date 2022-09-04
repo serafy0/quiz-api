@@ -1,3 +1,5 @@
+import ChoiceDAO from "../choice/choice.interface"
+
 interface QuestionDAO {
     number: number
     picture: string
@@ -6,5 +8,6 @@ interface QuestionDAO {
     explanation: string
     hint: string
     quiz_id: string
+    choices: ChoiceDAO[]
 }
 export default QuestionDAO
