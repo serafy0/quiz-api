@@ -8,7 +8,7 @@ import { addQuestion } from "./question.service"
 async function createQuestion(req: Request, res: Response, next: NextFunction) {
     try {
         const questionBody: QuestionDAO = req.body
-        const quiz_id = req.params.quiz_id
+        const quiz_id: string = req.params.quiz_id
         const valid = validateId({ id: quiz_id })
         if (!valid) {
             if (!req.params.quiz_id) {
