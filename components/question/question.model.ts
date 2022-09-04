@@ -1,4 +1,5 @@
 import BaseModel from "../../db/base.model"
+import Choice from "../choice/choice.model"
 
 class Question extends BaseModel {
     static get tableName() {
@@ -7,6 +8,17 @@ class Question extends BaseModel {
 
     static get idColumn() {
         return "id"
+    }
+
+    static relationMappings = {
+        choices: {
+            relation: BaseModel.HasManyRelation,
+            modelClass: Choice,
+            join: {
+                from: "questions.id",
+                to: "choices.question_id",
+            },
+        },
     }
 
     static get jsonSchema() {
