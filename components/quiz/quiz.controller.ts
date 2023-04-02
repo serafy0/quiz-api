@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express"
 import ApiError from "../../middleware/errorHandling/ApiError"
-import { addQuiz, editQuiz, getOneQuiz, removeQuiz } from "./quiz.service"
+import { addQuiz, editQuiz, getOneQuiz, removeQuiz } from "./quiz.repo"
 import { validateId } from "./quiz.validation"
 async function createQuiz(req: Request, res: Response, next: NextFunction) {
     try {

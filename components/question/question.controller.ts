@@ -1,9 +1,9 @@
 import { Response, Request, NextFunction } from "express"
 import ApiError from "../../middleware/errorHandling/ApiError"
-import { getOneQuiz } from "../quiz/quiz.service"
+import { getOneQuiz } from "../quiz/quiz.repo"
 import { validateId } from "../quiz/quiz.validation"
 import QuestionDAO from "./question.interface"
-import { addQuestion } from "./question.service"
+import { addQuestion } from "./question.repo"
 
 async function createQuestion(req: Request, res: Response, next: NextFunction) {
     try {
